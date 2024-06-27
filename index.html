@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Site Pessoal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #fff;
+        }
+
+        header {
+            background: linear-gradient(to right, #0055a4, #00c6ff);
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background: #333;
+            padding: 10px 0;
+        }
+
+        nav a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            color: #00c6ff;
+        }
+
+        section {
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        section h2 {
+            color: #0055a4;
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            width: 100%;
+            transition: color 0.3s;
+        }
+
+        section h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 4px;
+            background: linear-gradient(to right, #0055a4, #00c6ff);
+            position: absolute;
+            bottom: -10px;
+            left: calc(50% - 25px);
+            transition: background 0.3s;
+        }
+
+        section h2:hover {
+            color: #00c6ff;
+        }
+
+        section h2:hover::after {
+            background: linear-gradient(to right, #00c6ff, #0055a4);
+        }
+
+        section p, section ul {
+            text-align: left;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .contact-form input, .contact-form textarea {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            color: #333;
+        }
+
+        .contact-form button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: linear-gradient(to right, #0055a4, #00c6ff);
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(to right, #0055a4, #00c6ff);
+            color: #fff;
+            border: 2px solid #fff;
+            padding: 10px 15px;
+            border-radius: 5px;
+            display: none;
+            cursor: pointer;
+        }
+
+        .moving-text {
+            position: relative;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 100%;
+            color: #fff;
+            background: linear-gradient(to right, #0055a4, #00c6ff);
+            padding: 10px 0;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .moving-text span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: moveText 30s linear infinite;
+        }
+
+        @keyframes moveText {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .certifications {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .certification-item {
+            width: 45%;
+            margin: 10px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+            cursor: pointer;
+        }
+
+        .certification-item img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .certification-description {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .certification-back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #111;
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            backface-visibility: hidden;
+            transform: rotateY(180deg);
+        }
+
+        .certification-front {
+            backface-visibility: hidden;
+        }
+
+        .certification-item.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .theme-switcher {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .theme-switcher button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            color: #fff;
+        }
+
+        body.dark-mode {
+            background-color: #333;
+            color: #fff;
+        }
+
+        body.dark-mode header {
+            background: #222;
+        }
+
+        body.dark-mode nav {
+            background: #111;
+        }
+
+        body.dark-mode section h2 {
+            color: #fff;
+        }
+
+        body.dark-mode section h2::after {
+            background: #fff;
+        }
+
+        body.dark-mode .contact-form input,
+        body.dark-mode .contact-form textarea {
+            background: #555;
+            border: 1px solid #777;
+            color: #fff;
+        }
+
+        body.dark-mode .contact-form button {
+            background: #222;
+        }
+
+        body.dark-mode .back-to-top {
+            background: #222;
+        }
+
+        body.dark-mode .moving-text {
+            background: #222;
+        }
+
+        body.dark-mode .certification-item {
+            border: 1px solid #555;
+        }
+
+        body.dark-mode .certification-description {
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        body.dark-mode .certification-back {
+            background-color: #444;
+        }
+
+        .contact-icons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            gap: 20px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .contact-icons a {
+            color: inherit;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 16px;
+        }
+
+        .contact-icons a i {
+            margin-right: 5px;
+        }
+
+        body.dark-mode .contact-icons a {
+            color: #fff;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background: linear-gradient(to right, #0055a4, #00c6ff);
+            color: #fff;
+        }
+
+        footer .social-icons {
+            margin: 10px 0;
+        }
+
+        footer .social-icons a {
+            color: #fff;
+            margin: 0 10px;
+            font-size: 24px;
+        }
+
+        .carousel {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .carousel-images {
+            display: flex;
+            animation: carouselMove 60s linear infinite;
+        }
+
+        .carousel-images img {
+            width: 100%;
+            flex-shrink: 0;
+        }
+
+        @keyframes carouselMove {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* Estilo para a seção de contato com fundo branco */
+        .white-background {
+            background-color: #fff;
+            color: #333;
+        }
+
+        /* Estilos para a seção de contato no modo escuro */
+        body.dark-mode .white-background {
+            background-color: #222;
+            color: #fff;
+        }
+
+        /* Estilos para o rodapé no modo escuro */
+        body.dark-mode footer {
+            background: linear-gradient(to right, #111, #333);
+            color: #fff;
+        }
+
+        /* Estilos adicionais para links e ícones no rodapé no modo escuro */
+        body.dark-mode footer .social-icons a {
+            color: #fff;
+        }
+
+        .nav-icons {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .nav-icons a {
+            color: #fff;
+            margin: 0 10px;
+            font-size: 24px;
+        }
+
+        .theme-switcher {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .theme-switcher button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: #fff;
+        }
+
+        .theme-switcher button i {
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>João Silva</h1>
+        <div class="theme-switcher">
+            <button id="theme-toggle"><i class="fas fa-adjust"></i></button>
+        </div>
+    </header>
+    <nav>
+        <a href="#sobre"><i class="fas fa-user"></i> Sobre</a>
+        <a href="#portfolio"><i class="fas fa-briefcase"></i> Portfólio</a>
+        <a href="#blog"><i class="fas fa-blog"></i> Blog</a>
+        <a href="#habilidades"><i class="fas fa-cogs"></i> Habilidades</a>
+        <a href="#projetos"><i class="fas fa-project-diagram"></i> Projetos</a>
+        <a href="#certificacoes"><i class="fas fa-certificate"></i> Certificações</a>
+        <a href="#contato"><i class="fas fa-envelope"></i> Contato</a>
+    </nav>
+    <section class="moving-text">
+        <span>Bem-vindo ao meu site pessoal! Explore meus projetos e entre em contato.</span>
+    </section>
+    <section id="sobre">
+        <h2>Sobre Mim</h2>
+        <p>Olá! Meu nome é João Silva e sou um desenvolvedor web apaixonado por criar soluções inovadoras.</p>
+    </section>
+    <section id="portfolio">
+        <h2>Portfólio</h2>
+        <p>Aqui estão alguns dos meus projetos mais recentes.</p>
+    </section>
+    <section id="blog">
+        <h2>Blog</h2>
+        <p>Confira meus artigos mais recentes sobre desenvolvimento web e tecnologia.</p>
+    </section>
+    <section id="habilidades">
+        <h2>Habilidades</h2>
+        <p>Tenho experiência com diversas tecnologias, incluindo HTML, CSS, JavaScript, e frameworks como React e Angular.</p>
+    </section>
+    <section id="projetos">
+        <h2>Projetos</h2>
+        <div class="carousel">
+            <div class="carousel-images">
+                <img src="https://via.placeholder.com/1200x500" alt="Projeto 1">
+                <img src="https://via.placeholder.com/1200x500" alt="Projeto 2">
+                <img src="https://via.placeholder.com/1200x500" alt="Projeto 3">
+            </div>
+        </div>
+    </section>
+    <section id="certificacoes">
+        <h2>Certificações</h2>
+        <div class="certifications">
+            <div class="certification-item">
+                <div class="certification-front">
+                    <img src="https://via.placeholder.com/150" alt="Certificação 1">
+                    <div class="certification-description">Certificação 1</div>
+                </div>
+                <div class="certification-back">
+                    <p>Descrição detalhada da Certificação 1</p>
+                </div>
+            </div>
+            <div class="certification-item">
+                <div class="certification-front">
+                    <img src="https://via.placeholder.com/150" alt="Certificação 2">
+                    <div class="certification-description">Certificação 2</div>
+                </div>
+                <div class="certification-back">
+                    <p>Descrição detalhada da Certificação 2</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="contato" class="white-background">
+        <h2>Contato</h2>
+        <div class="contact-icons">
+            <a href="https://linkedin.com/in/username"><i class="fab fa-linkedin"></i> linkedin.com/in/username</a>
+            <a href="https://wa.me/1234567890"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        </div>
+        <form class="contact-form">
+            <input type="text" placeholder="Seu Nome" required>
+            <input type="email" placeholder="Seu Email" required>
+            <textarea placeholder="Sua Mensagem" rows="5" required></textarea>
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
+    <footer><section class="moving-text">
+        <span>Bem-vindo ao meu site pessoal! Explore meus projetos e entre em contato.</span>
+    </section>
+        <p>&copy; 2024 João Silva. Todos os direitos reservados.</p>
+        <div class="social-icons">
+            <a href="https://facebook.com/username"><i class="fab fa-facebook"></i></a>
+            <a href="https://twitter.com/username"><i class="fab fa-twitter"></i></a>
+            <a href="https://instagram.com/username"><i class="fab fa-instagram"></i></a>
+			<a href="https://github.com/username"><i class="fab fa-github"></i></a>
+        </div>
+    </footer>
+    <div class="back-to-top" id="back-to-top"><i class="fas fa-arrow-up"></i></div>
+
+    <script>
+        document.getElementById('theme-toggle').addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+        });
+
+        window.addEventListener('scroll', function() {
+            var backToTopButton = document.getElementById('back-to-top');
+            if (window.pageYOffset > 100) {
+                backToTopButton.style.display = 'block';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        });
+
+        document.getElementById('back-to-top').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        var certificationItems = document.querySelectorAll('.certification-item');
+        certificationItems.forEach(function(item) {
+            item.addEventListener('click', function() {
+                this.classList.toggle('flipped');
+            });
+        });
+    </script>
+</body>
+</html>
